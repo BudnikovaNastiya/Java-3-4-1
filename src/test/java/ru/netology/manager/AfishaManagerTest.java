@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AfishaManagerTest {
 
-    private AfishaManager manager = new AfishaManager();
+    private AfishaManager manager = new AfishaManager(10);
     private Afisha first = new Afisha(1, 1, "first", "link1", "genre1");
     private Afisha second = new Afisha(2, 2, "second", "link2", "genre2");
     private Afisha third = new Afisha(3, 3, "third", "link3", "genre3");
@@ -20,32 +20,40 @@ public class AfishaManagerTest {
     private Afisha eighth = new Afisha(8, 8, "eighth", "link8", "genre8");
     private Afisha ninth = new Afisha(9, 9, "ninth", "link9", "genre9");
     private Afisha tenth = new Afisha(10, 10, "tenth", "link10", "genre10");
+    private Afisha eleven = new Afisha(11, 11, "eleven", "link11", "genre11");
 
-    @BeforeEach
-    public void setUp() {
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        manager.add(fourth);
-        manager.add(fifth);
-        manager.add(sixth);
-        manager.add(seventh);
-        manager.add(eighth);
-        manager.add(ninth);
-        manager.add(tenth);
-    }
 
     @Test
-    public void shouldShowTen() {
+    public void shouldShowZero() {
         Afisha[] actual = manager.getAll();
-        Afisha[] expected = new Afisha[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        Afisha[] expected = new Afisha[]{};
+
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
+    public void shouldShoOne() {
+        manager.add(fourth);
+        Afisha[] actual = manager.getAll();
+        Afisha[] expected = new Afisha[]{fourth};
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldShoTwo() {
+        manager.add(fourth);
+        manager.add(eighth);
+        Afisha[] actual = manager.getAll();
+        Afisha[] expected = new Afisha[]{eighth, fourth};
+
+        assertArrayEquals(expected, actual);
+    }
+
+
+    @Test
     public void shouldShowFive() {
-        AfishaManager manager = new AfishaManager(5);
         manager.add(first);
         manager.add(second);
         manager.add(third);
@@ -58,15 +66,43 @@ public class AfishaManagerTest {
     }
 
     @Test
-    public void shouldShowOne() {
-        AfishaManager manager = new AfishaManager(1);
+    public void shouldShowTen() {
         manager.add(first);
         manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleven);
         Afisha[] actual = manager.getAll();
-        Afisha[] expected = new Afisha[]{first};
+        Afisha[] expected = new Afisha[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
 
         assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldShowEleven() {
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleven);
+        Afisha[] actual = manager.getAll();
+        Afisha[] expected = new Afisha[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+
+        assertArrayEquals(expected, actual);
+    }
+
 
     @Test
     public void setAmountFilmsMaxUnderZero() {

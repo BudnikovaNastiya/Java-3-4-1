@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 
 public class AfishaManager {
-    int amountFilmsMax = 10;
+    int amountFilmsMax =10;
     private Afisha[] items = new Afisha[0];
 
     public void add(Afisha item) {
@@ -32,16 +32,17 @@ public class AfishaManager {
 
     public Afisha[] getAll() {
         int resultLength;
-        if (items.length < amountFilmsMax) {
-            resultLength = items.length;
-        } else {
+        if (items.length > amountFilmsMax) {
             resultLength = amountFilmsMax;
+        } else {
+            resultLength = items.length;
+            amountFilmsMax = resultLength;
         }
         // перебираем массив в прямом порядке
         // но кладём в результаты в обратном
         Afisha[] result = new Afisha[amountFilmsMax];
-        for (int i = 0; i < result.length; i++) {
-            int index = amountFilmsMax - 1 - i;
+        for (int i = 0; i < resultLength; i++) {
+            int index = resultLength -1 - i;
             result[i] = items[index];
         }
         return result;
