@@ -103,6 +103,25 @@ public class AfishaManagerTest {
         assertArrayEquals(expected, actual);
     }
 
+    @Test
+    public void shouldShowMoreThanTheLimit()
+    {
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleven);
+        Afisha[] actual = manager.getAll();
+        Afisha[] expected = new Afisha[]{eleven, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+
+        assertArrayEquals(expected, actual);
+    }
 
     @Test
     public void setAmountFilmsMaxUnderZero() {
