@@ -118,7 +118,7 @@ public class AfishaManagerTest {
         manager.add(tenth);
         manager.add(eleven);
         Afisha[] actual = manager.getAll();
-        Afisha[] expected = new Afisha[]{eleven, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        Afisha[] expected = new Afisha[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
 
         assertArrayEquals(expected, actual);
     }
