@@ -1,9 +1,10 @@
 package ru.netology.manager;
 
-import ru.netology.domain.Afisha;
 import lombok.Data;
-
+import lombok.NoArgsConstructor;
+import ru.netology.domain.Afisha;
 @Data
+@NoArgsConstructor
 
 public class AfishaManager {
     int amountFilmsMax =10;
@@ -36,19 +37,15 @@ public class AfishaManager {
             resultLength = amountFilmsMax;
         } else {
             resultLength = items.length;
-            amountFilmsMax = resultLength;
         }
         // перебираем массив в прямом порядке
         // но кладём в результаты в обратном
         Afisha[] result = new Afisha[amountFilmsMax];
         for (int i = 0; i < resultLength; i++) {
-            int index = resultLength -1 - i;
+            int index = items.length -1 - i;
             result[i] = items[index];
         }
         return result;
-    }
-
-    public AfishaManager() {
     }
 
     public AfishaManager(int amountFilmsMax) {

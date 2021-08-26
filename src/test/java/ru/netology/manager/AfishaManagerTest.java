@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AfishaManagerTest {
 
-    private AfishaManager manager = new AfishaManager(10);
+    private AfishaManager manager = new AfishaManager();
     private Afisha first = new Afisha(1, 1, "first", "link1", "genre1");
     private Afisha second = new Afisha(2, 2, "second", "link2", "genre2");
     private Afisha third = new Afisha(3, 3, "third", "link3", "genre3");
@@ -23,8 +23,24 @@ public class AfishaManagerTest {
     private Afisha eleven = new Afisha(11, 11, "eleven", "link11", "genre11");
 
 
+    @BeforeEach
+    public void setup() {
+        manager.add(first);
+        manager.add(second);
+        manager.add(third);
+        manager.add(fourth);
+        manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
+        manager.add(eighth);
+        manager.add(ninth);
+        manager.add(tenth);
+        manager.add(eleven);
+    }
+
     @Test
     public void shouldShowZero() {
+        AfishaManager manager = new AfishaManager(0);
         Afisha[] actual = manager.getAll();
         Afisha[] expected = new Afisha[]{};
 
@@ -34,15 +50,17 @@ public class AfishaManagerTest {
 
     @Test
     public void shouldShoOne() {
-        manager.add(fourth);
+        AfishaManager manager = new AfishaManager(1);
+        manager.add(sixth);
         Afisha[] actual = manager.getAll();
-        Afisha[] expected = new Afisha[]{fourth};
+        Afisha[] expected = new Afisha[]{sixth};
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldShoTwo() {
+        AfishaManager manager = new AfishaManager(2);
         manager.add(fourth);
         manager.add(eighth);
         Afisha[] actual = manager.getAll();
@@ -54,20 +72,20 @@ public class AfishaManagerTest {
 
     @Test
     public void shouldShowFive() {
-        manager.add(first);
-        manager.add(second);
+        AfishaManager manager = new AfishaManager(5);
         manager.add(third);
         manager.add(fourth);
         manager.add(fifth);
+        manager.add(sixth);
+        manager.add(seventh);
         Afisha[] actual = manager.getAll();
-        Afisha[] expected = new Afisha[]{fifth, fourth, third, second, first};
+        Afisha[] expected = new Afisha[]{seventh,sixth,fifth, fourth, third};
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldShowTen() {
-        manager.add(first);
         manager.add(second);
         manager.add(third);
         manager.add(fourth);
@@ -79,29 +97,10 @@ public class AfishaManagerTest {
         manager.add(tenth);
         manager.add(eleven);
         Afisha[] actual = manager.getAll();
-        Afisha[] expected = new Afisha[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
-
+        Afisha[] expected = new Afisha[]{eleven, tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
         assertArrayEquals(expected, actual);
     }
 
-    @Test
-    public void shouldShowEleven() {
-        manager.add(first);
-        manager.add(second);
-        manager.add(third);
-        manager.add(fourth);
-        manager.add(fifth);
-        manager.add(sixth);
-        manager.add(seventh);
-        manager.add(eighth);
-        manager.add(ninth);
-        manager.add(tenth);
-        manager.add(eleven);
-        Afisha[] actual = manager.getAll();
-        Afisha[] expected = new Afisha[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
-
-        assertArrayEquals(expected, actual);
-    }
 
     @Test
     public void shouldShowMoreThanTheLimit()
@@ -118,7 +117,7 @@ public class AfishaManagerTest {
         manager.add(tenth);
         manager.add(eleven);
         Afisha[] actual = manager.getAll();
-        Afisha[] expected = new Afisha[]{tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second, first};
+        Afisha[] expected = new Afisha[] {eleven,tenth, ninth, eighth, seventh, sixth, fifth, fourth, third, second};
 
         assertArrayEquals(expected, actual);
     }
